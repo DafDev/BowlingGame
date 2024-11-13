@@ -4,7 +4,7 @@ public class Game
 {
     private const int MAX_FRAMES_PER_GAME = 10;
     private const int STRIKE = 10;
-    private readonly Frame[] _frames = new Frame[MAX_FRAMES_PER_GAME];
+    private readonly List<Frame> _frames = [];
     private readonly int _totalFrameCount;
     private int _frameRoll;
 
@@ -14,7 +14,7 @@ public class Game
         ArgumentOutOfRangeException.ThrowIfGreaterThan(pins, STRIKE);
         var frame = new Frame();
         frame.Rolls.Add(pins);
-        _frames[_totalFrameCount] = frame;
+        _frames.Add(frame);
     }
 
     public int Score() 
