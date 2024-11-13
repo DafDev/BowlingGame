@@ -3,12 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7AC0A4AC-DDA9-416E-B16E-756348F309EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DafBowling.Domain", "src\DafBowling.Domain\DafBowling.Domain.csproj", "{7B98A820-07C7-4939-A07B-9726FD19BA17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EEC41ED8-7919-4B41-B0FE-1BD7F3F7C041}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DafBowling.Domain.Tests", "tests\DafBowling.Domain.Tests\DafBowling.Domain.Tests.csproj", "{B143E127-6833-4109-B0B8-9A963835B21A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EEA7C32-46C9-49E1-99AD-7A9DEAC61090}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B98A820-07C7-4939-A07B-9726FD19BA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B98A820-07C7-4939-A07B-9726FD19BA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B98A820-07C7-4939-A07B-9726FD19BA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B98A820-07C7-4939-A07B-9726FD19BA17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B143E127-6833-4109-B0B8-9A963835B21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B143E127-6833-4109-B0B8-9A963835B21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B143E127-6833-4109-B0B8-9A963835B21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B143E127-6833-4109-B0B8-9A963835B21A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B98A820-07C7-4939-A07B-9726FD19BA17} = {7AC0A4AC-DDA9-416E-B16E-756348F309EF}
+		{B143E127-6833-4109-B0B8-9A963835B21A} = {EEC41ED8-7919-4B41-B0FE-1BD7F3F7C041}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64F6889C-273C-40C8-8412-CE2016608813}
 	EndGlobalSection
 EndGlobal
