@@ -8,8 +8,5 @@ public class Frame
 
     public bool IsSpare() => Rolls.Count > 1 && Rolls.Sum() == 10;
 
-    public bool IsStrike()
-    {
-        return Rolls.Count == 1 && Rolls.Single() == 10;
-    }
+    public bool IsStrike() => Rolls.Count == 1 && Rolls.Single() == 10;
 }

@@ -33,6 +33,18 @@ public class GameTests
         action.Should().Throw<ArgumentOutOfRangeException>();
     }
 
+    [Fact]
+    public void GivenThreeRollsWhenGetFrameShouldReturnTwoFrames()
+    {
+        // Given 
+        _sut.Roll(5);
+        _sut.Roll(3);
+        _sut.Roll(4);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(2);
+    }
+
     //[Fact]
     //public void GivenPinsTakenDownWhenRollShouldReturnApropriateScore()
     //{
