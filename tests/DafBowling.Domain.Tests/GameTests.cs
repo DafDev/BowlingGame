@@ -1,3 +1,4 @@
+using DafBowling.Domain.Exceptions;
 using FluentAssertions;
 
 namespace DafBowling.Domain.Tests;
@@ -46,27 +47,225 @@ public class GameTests
     }
 
     [Fact]
-    public void GivenTwoRollsWithStrikeWhenGetFrameShouldReturnTwoFrames()
+    public void GivenTwoRollsWithStrikeWhenRollShouldReturnTwoFrames()
     {
         // Given 
         _sut.Roll(10);
         _sut.Roll(3);
 
+
+
         // When & Should
         _sut.Frames.Should().HaveCount(2);
     }
 
-    //[Fact]
-    //public void GivenPinsTakenDownWhenRollShouldReturnApropriateScore()
-    //{
-    //    // Given 
-    //    var firstRoll = 2;
-    //    _sut.Roll(firstRoll);
+    [Fact]
+    public void GivenMoreThanTenPinDownInFrameWhenRollShouldThrow()
+    {
+        // Given 
+        _sut.Roll(9);
+        var action = () => _sut.Roll(3);
 
-    //    // When
-    //    var actual = _sut.Score();
+        // When & Should
+        action.Should().Throw<TooManyPinsDownException>();
+    }
 
-    //    // Should
-    //    actual.Should().Be(2);
-    //}
+    [Fact]
+    public void GivenRightConditionsWithSpareWhenGetFrameShouldReturnLastFrameWithThreeRolls()
+    {
+        // Given 
+        // Roll 1
+        _sut.Roll(10);
+        // Roll 2
+        _sut.Roll(3);
+        _sut.Roll(2);
+        // Roll 3
+        _sut.Roll(7);
+        _sut.Roll(3);
+        // Roll 4
+        _sut.Roll(6);
+        _sut.Roll(4);
+        // Roll 5
+        _sut.Roll(3);
+        _sut.Roll(6);
+        // Roll 6
+        _sut.Roll(3);
+        _sut.Roll(7);
+        // Roll 7
+        _sut.Roll(3);
+        _sut.Roll(5);
+        // Roll 8
+        _sut.Roll(3);
+        _sut.Roll(4);
+        // Roll 9
+        _sut.Roll(2);
+        _sut.Roll(4);
+        // Roll 10
+        _sut.Roll(3);
+        _sut.Roll(7);
+        _sut.Roll(7);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(10);
+        _sut.Frames.Last().Rolls.Should().HaveCount(3);
+    }
+
+    [Fact]
+    public void GivenRightConditionsWithStrikeWhenGetFrameShouldReturnLastFrameWithThreeRolls()
+    {
+        // Given 
+        // Roll 1
+        _sut.Roll(10);
+        // Roll 2
+        _sut.Roll(3);
+        _sut.Roll(2);
+        // Roll 3
+        _sut.Roll(7);
+        _sut.Roll(3);
+        // Roll 4
+        _sut.Roll(6);
+        _sut.Roll(4);
+        // Roll 5
+        _sut.Roll(3);
+        _sut.Roll(6);
+        // Roll 6
+        _sut.Roll(3);
+        _sut.Roll(7);
+        // Roll 7
+        _sut.Roll(3);
+        _sut.Roll(5);
+        // Roll 8
+        _sut.Roll(3);
+        _sut.Roll(4);
+        // Roll 9
+        _sut.Roll(2);
+        _sut.Roll(4);
+        // Roll 10
+        _sut.Roll(10);
+        _sut.Roll(7);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(10);
+        _sut.Frames.Last().Rolls.Should().HaveCount(2);
+    }
+
+    [Fact]
+    public void GivenNoRightConditionsWithStrikeWhenGetFrameShouldReturnLastFrameWithTwoRolls()
+    {
+        // Given 
+        // Roll 1
+        _sut.Roll(10);
+        // Roll 2
+        _sut.Roll(3);
+        _sut.Roll(2);
+        // Roll 3
+        _sut.Roll(7);
+        _sut.Roll(3);
+        // Roll 4
+        _sut.Roll(6);
+        _sut.Roll(4);
+        // Roll 5
+        _sut.Roll(3);
+        _sut.Roll(6);
+        // Roll 6
+        _sut.Roll(3);
+        _sut.Roll(7);
+        // Roll 7
+        _sut.Roll(3);
+        _sut.Roll(5);
+        // Roll 8
+        _sut.Roll(3);
+        _sut.Roll(4);
+        // Roll 9
+        _sut.Roll(2);
+        _sut.Roll(4);
+        // Roll 10
+        _sut.Roll(2);
+        _sut.Roll(7);
+        _sut.Roll(7);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(10);
+        _sut.Frames.Last().Rolls.Should().HaveCount(2);
+    }
+
+    [Fact]
+    public void NoMoreThanTenFramesByGame()
+    {
+        // Given 
+        // Roll 1
+        _sut.Roll(10);
+        // Roll 2
+        _sut.Roll(3);
+        _sut.Roll(2);
+        // Roll 3
+        _sut.Roll(7);
+        _sut.Roll(3);
+        // Roll 4
+        _sut.Roll(6);
+        _sut.Roll(4);
+        // Roll 5
+        _sut.Roll(1);
+        _sut.Roll(8);
+        // Roll 6
+        _sut.Roll(3);
+        _sut.Roll(7);
+        // Roll 7
+        _sut.Roll(3);
+        _sut.Roll(5);
+        // Roll 8
+        _sut.Roll(3);
+        _sut.Roll(4);
+        // Roll 9
+        _sut.Roll(2);
+        _sut.Roll(4);
+        // Roll 10
+        _sut.Roll(3);
+        _sut.Roll(6);
+        // Roll 11
+        _sut.Roll(5);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(10);
+    }
+
+    [Fact]
+    public void InLastFrameNoMoreThanTenPinsDownInOnRoll()
+    {
+        // Given 
+        // Roll 1
+        _sut.Roll(10);
+        // Roll 2
+        _sut.Roll(3);
+        _sut.Roll(2);
+        // Roll 3
+        _sut.Roll(7);
+        _sut.Roll(3);
+        // Roll 4
+        _sut.Roll(6);
+        _sut.Roll(4);
+        // Roll 5
+        _sut.Roll(1);
+        _sut.Roll(8);
+        // Roll 6
+        _sut.Roll(3);
+        _sut.Roll(7);
+        // Roll 7
+        _sut.Roll(3);
+        _sut.Roll(5);
+        // Roll 8
+        _sut.Roll(3);
+        _sut.Roll(4);
+        // Roll 9
+        _sut.Roll(2);
+        _sut.Roll(4);
+        // Roll 10
+        _sut.Roll(3);
+        // // When 
+        var action = () => _sut.Roll(8);
+
+
+        // Should
+        action.Should().Throw<TooManyPinsDownException>();
+    }
 }
