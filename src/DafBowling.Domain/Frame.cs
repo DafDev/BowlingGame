@@ -1,6 +1,12 @@
-﻿namespace DafBowling.Domain;
+﻿
+
+namespace DafBowling.Domain;
 public class Frame
 {
-    public IList<int> Rolls { get; set; } = [];
+    public List<int> Rolls { get; set; } = [];
     public int Points { get; set; }
+
+    public bool IsSpare() => Rolls.Count > 1 && Rolls.Sum() == 10;
+
+    public bool IsStrike() => Rolls.Count == 1 && Rolls.Single() == 10;
 }
