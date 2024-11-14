@@ -45,6 +45,17 @@ public class GameTests
         _sut.Frames.Should().HaveCount(2);
     }
 
+    [Fact]
+    public void GivenTwoRollsWithStrikeWhenGetFrameShouldReturnTwoFrames()
+    {
+        // Given 
+        _sut.Roll(10);
+        _sut.Roll(3);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(2);
+    }
+
     //[Fact]
     //public void GivenPinsTakenDownWhenRollShouldReturnApropriateScore()
     //{

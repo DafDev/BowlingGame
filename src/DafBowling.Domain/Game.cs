@@ -18,7 +18,7 @@ public class Game
             Frames.Add(frame);
 
         frame.Rolls.Add(pins);
-        _isFrameStillBeingPlayed = frame.Rolls.Count < 2;
+        _isFrameStillBeingPlayed = frame.Rolls.Count < 2 && !frame.IsStrike();
     }
 
     public int Score()
