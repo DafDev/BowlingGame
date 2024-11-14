@@ -13,22 +13,16 @@ public class Game
     {
         ArgumentOutOfRangeException.ThrowIfNegative(pins);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(pins, STRIKE);
-        var frame = _isFrameStillBeingPlayed ? Frames.Last() : new Frame() ;
-        if (frame.Rolls.Count == 0)
-        {
+        var frame = _isFrameStillBeingPlayed ? Frames.Last() : new Frame();
+        if (!Frames.Contains(frame))
             Frames.Add(frame);
-            _isFrameStillBeingPlayed = true;
 
-        }
-        else
-        {
-            _isFrameStillBeingPlayed = false;
-        }
         frame.Rolls.Add(pins);
+        _isFrameStillBeingPlayed = frame.Rolls.Count < 2;
     }
 
-    public int Score() 
-    { 
-        throw new NotImplementedException(); 
+    public int Score()
+    {
+        throw new NotImplementedException();
     }
 }
