@@ -45,6 +45,10 @@ public class Game
         return score;
     }
 
+    public bool Strike() => Frames.Last().IsStrike();
+
+    public bool Spare() => Frames.Last().IsSpare();
+
     private bool AreThereTooManyPinsDown(int pins, Frame frame)
         => frame.Rolls.Sum() + pins > MAX_NUMBER_OF_PINS && Frames.Count < MAX_FRAMES_PER_GAME
             || Frames.Count == MAX_FRAMES_PER_GAME && frame.Rolls.Count == 1 && !frame.IsStrike() && frame.Rolls.Sum() + pins > MAX_NUMBER_OF_PINS

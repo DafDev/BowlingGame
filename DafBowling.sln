@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DafBowling.Application", "src\DafBowling.Application\DafBowling.Application.csproj", "{A653C63C-4B9F-4D61-AA86-ACBD496D7F51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{B143E127-6833-4109-B0B8-9A963835B21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B143E127-6833-4109-B0B8-9A963835B21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B143E127-6833-4109-B0B8-9A963835B21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A653C63C-4B9F-4D61-AA86-ACBD496D7F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A653C63C-4B9F-4D61-AA86-ACBD496D7F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A653C63C-4B9F-4D61-AA86-ACBD496D7F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A653C63C-4B9F-4D61-AA86-ACBD496D7F51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7B98A820-07C7-4939-A07B-9726FD19BA17} = {7AC0A4AC-DDA9-416E-B16E-756348F309EF}
 		{B143E127-6833-4109-B0B8-9A963835B21A} = {EEC41ED8-7919-4B41-B0FE-1BD7F3F7C041}
+		{A653C63C-4B9F-4D61-AA86-ACBD496D7F51} = {7AC0A4AC-DDA9-416E-B16E-756348F309EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64F6889C-273C-40C8-8412-CE2016608813}
