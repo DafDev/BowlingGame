@@ -20,4 +20,18 @@ internal class GameTestsData
             {extraRollWithStrikeData,frameCount,2 },
         };
     }
+
+    public static TheoryData<List<int>, int> OngoingGamesData()
+    {
+        List<int> onGoingGameNoStrikeOrSpare = [5, 3, 4];
+        List<int> onGoingGameStrike = [10, 4];
+        List<int> onGoingGameSpare = [5, 5, 4];
+        var frameCount = 2;
+        return new()
+        {
+            {onGoingGameNoStrikeOrSpare, frameCount },
+            {onGoingGameStrike, frameCount },
+            {onGoingGameSpare, frameCount }
+        };
+    }
 }

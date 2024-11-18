@@ -35,29 +35,6 @@ public class GameTests
     }
 
     [Fact]
-    public void GivenThreeRollsWhenGetFrameShouldReturnTwoFrames()
-    {
-        // Given 
-        _sut.Roll(5);
-        _sut.Roll(3);
-        _sut.Roll(4);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(2);
-    }
-
-    [Fact]
-    public void GivenTwoRollsWithStrikeWhenRollShouldReturnTwoFrames()
-    {
-        // Given 
-        _sut.Roll(10);
-        _sut.Roll(3);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(2);
-    }
-
-    [Fact]
     public void GivenMoreThanTenPinDownInFrameWhenRollShouldThrow()
     {
         // Given 
@@ -67,6 +44,17 @@ public class GameTests
         // When & Should
         action.Should().Throw<TooManyPinsDownException>();
     }
+
+    [Theory]
+    [MemberData(nameof(GameTestsData.OngoingGamesData), MemberType = typeof(GameTestsData))]
+    public void GivenOngoingGameShouldReturnNumberOfFrames(List<int> inputData, int frameCount)
+    {
+        // Given 
+        RollSetup(inputData);
+        // When & Should
+        _sut.Frames.Should().HaveCount(frameCount);
+    }
+
 
     [Theory]
     [MemberData(nameof(GameTestsData.LastFrameWithExtraRollsOrNotData), MemberType = typeof(GameTestsData))]
@@ -83,194 +71,13 @@ public class GameTests
     private void RollSetup(List<int> rolls) => rolls.ForEach(_sut.Roll);
 
     [Fact]
-    public void GivenRightConditionsWithSpareWhenGetFrameShouldReturnLastFrameWithThreeRolls()
-    {
-        // Given 
-        // Roll 1
-        _sut.Roll(10);
-        // Roll 2
-        _sut.Roll(3);
-        _sut.Roll(2);
-        // Roll 3
-        _sut.Roll(7);
-        _sut.Roll(3);
-        // Roll 4
-        _sut.Roll(6);
-        _sut.Roll(4);
-        // Roll 5
-        _sut.Roll(3);
-        _sut.Roll(6);
-        // Roll 6
-        _sut.Roll(3);
-        _sut.Roll(7);
-        // Roll 7
-        _sut.Roll(3);
-        _sut.Roll(5);
-        // Roll 8
-        _sut.Roll(3);
-        _sut.Roll(4);
-        // Roll 9
-        _sut.Roll(2);
-        _sut.Roll(4);
-        // Roll 10
-        _sut.Roll(3);
-        _sut.Roll(7);
-        _sut.Roll(7);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(10);
-        _sut.Frames.Last().Rolls.Should().HaveCount(3);
-    }
-
-    [Fact]
-    public void GivenRightConditionsWithStrikeWhenGetFrameShouldReturnLastFrameWithThreeRolls()
-    {
-        // Given 
-        // Roll 1
-        _sut.Roll(10);
-        // Roll 2
-        _sut.Roll(3);
-        _sut.Roll(2);
-        // Roll 3
-        _sut.Roll(7);
-        _sut.Roll(3);
-        // Roll 4
-        _sut.Roll(6);
-        _sut.Roll(4);
-        // Roll 5
-        _sut.Roll(3);
-        _sut.Roll(6);
-        // Roll 6
-        _sut.Roll(3);
-        _sut.Roll(7);
-        // Roll 7
-        _sut.Roll(3);
-        _sut.Roll(5);
-        // Roll 8
-        _sut.Roll(3);
-        _sut.Roll(4);
-        // Roll 9
-        _sut.Roll(2);
-        _sut.Roll(4);
-        // Roll 10
-        _sut.Roll(10);
-        _sut.Roll(7);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(10);
-        _sut.Frames.Last().Rolls.Should().HaveCount(2);
-    }
-
-    [Fact]
-    public void GivenNoRightConditionsWithStrikeWhenGetFrameShouldReturnLastFrameWithTwoRolls()
-    {
-        // Given 
-        // Roll 1
-        _sut.Roll(10);
-        // Roll 2
-        _sut.Roll(3);
-        _sut.Roll(2);
-        // Roll 3
-        _sut.Roll(7);
-        _sut.Roll(3);
-        // Roll 4
-        _sut.Roll(6);
-        _sut.Roll(4);
-        // Roll 5
-        _sut.Roll(3);
-        _sut.Roll(6);
-        // Roll 6
-        _sut.Roll(3);
-        _sut.Roll(7);
-        // Roll 7
-        _sut.Roll(3);
-        _sut.Roll(5);
-        // Roll 8
-        _sut.Roll(3);
-        _sut.Roll(4);
-        // Roll 9
-        _sut.Roll(2);
-        _sut.Roll(4);
-        // Roll 10
-        _sut.Roll(2);
-        _sut.Roll(7);
-        _sut.Roll(7);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(10);
-        _sut.Frames.Last().Rolls.Should().HaveCount(2);
-    }
-
-    [Fact]
-    public void NoMoreThanTenFramesByGame()
-    {
-        // Given 
-        // Roll 1
-        _sut.Roll(10);
-        // Roll 2
-        _sut.Roll(3);
-        _sut.Roll(2);
-        // Roll 3
-        _sut.Roll(7);
-        _sut.Roll(3);
-        // Roll 4
-        _sut.Roll(6);
-        _sut.Roll(4);
-        // Roll 5
-        _sut.Roll(1);
-        _sut.Roll(8);
-        // Roll 6
-        _sut.Roll(3);
-        _sut.Roll(7);
-        // Roll 7
-        _sut.Roll(3);
-        _sut.Roll(5);
-        // Roll 8
-        _sut.Roll(3);
-        _sut.Roll(4);
-        // Roll 9
-        _sut.Roll(2);
-        _sut.Roll(4);
-        // Roll 10
-        _sut.Roll(3);
-        _sut.Roll(6);
-        // Roll 11
-        _sut.Roll(5);
-
-        // When & Should
-        _sut.Frames.Should().HaveCount(10);
-    }
-
-    [Fact]
     public void InLastFrameNoMoreThanTenPinsDownInOnRoll()
     {
         // Given 
-        // Roll 1
-        _sut.Roll(10);
-        // Roll 2
-        _sut.Roll(3);
-        _sut.Roll(2);
-        // Roll 3
-        _sut.Roll(7);
-        _sut.Roll(3);
-        // Roll 4
-        _sut.Roll(6);
-        _sut.Roll(4);
-        // Roll 5
-        _sut.Roll(1);
-        _sut.Roll(8);
-        // Roll 6
-        _sut.Roll(3);
-        _sut.Roll(7);
-        // Roll 7
-        _sut.Roll(3);
-        _sut.Roll(5);
-        // Roll 8
-        _sut.Roll(3);
-        _sut.Roll(4);
-        // Roll 9
-        _sut.Roll(2);
-        _sut.Roll(4);
+        // Roll 1 to 9
+        for (int i = 0; i < 5; i++) 
+            _sut.Roll(10);
+
         // Roll 10
         _sut.Roll(3);
         // // When 
