@@ -53,8 +53,6 @@ public class GameTests
         _sut.Roll(10);
         _sut.Roll(3);
 
-
-
         // When & Should
         _sut.Frames.Should().HaveCount(2);
     }
@@ -69,6 +67,20 @@ public class GameTests
         // When & Should
         action.Should().Throw<TooManyPinsDownException>();
     }
+
+    [Theory]
+    [MemberData(nameof(GameTestsData.LastFrameWithExtraRollsOrNotData), MemberType = typeof(GameTestsData))]
+    public void GivenRightConditionsOnLasFrameWhenGetFrameShouldReturnLastFrameWithExtraRoll(List<int> rolls,int frameCount,int lastFrameRollCount)
+    {
+        // Given
+        RollSetup(rolls);
+
+        // When & Should
+        _sut.Frames.Should().HaveCount(frameCount);
+        _sut.Frames.Last().Rolls.Should().HaveCount(lastFrameRollCount);
+    }
+
+    private void RollSetup(List<int> rolls) => rolls.ForEach(_sut.Roll);
 
     [Fact]
     public void GivenRightConditionsWithSpareWhenGetFrameShouldReturnLastFrameWithThreeRolls()
