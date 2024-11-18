@@ -50,6 +50,7 @@ internal class GameTestsData
         return new()
         {
             { [], 0 },
+            { [7], 7},
             { onGoingGameNoStrikeOrSpare, 8 },
             { onGoingGameNoStrikeOrSpareTwoFrames, 10 },
             { onGoingGameStrike, 28 },
