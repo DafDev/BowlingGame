@@ -68,7 +68,6 @@ public class GameTests
         _sut.Frames.Last().Rolls.Should().HaveCount(lastFrameRollCount);
     }
 
-    private void RollSetup(List<int> rolls) => rolls.ForEach(_sut.Roll);
 
     [Fact]
     public void InLastFrameNoMoreThanTenPinsDownInOnRoll()
@@ -87,4 +86,20 @@ public class GameTests
         // Should
         action.Should().Throw<TooManyPinsDownException>();
     }
+
+    [Theory]
+    [MemberData(nameof(GameTestsData.ScoreGamesData), MemberType = typeof(GameTestsData))]
+    public void GivenOngoigGameWhenScoreShouldReturlCurrentScore(List<int> rolls, int score) 
+    {
+        // Given
+        RollSetup(rolls);
+
+        // When 
+        var actual = _sut.Score();
+
+        // Should
+        actual.Should().Be(score);
+    }
+
+    private void RollSetup(List<int> rolls) => rolls.ForEach(_sut.Roll);
 }

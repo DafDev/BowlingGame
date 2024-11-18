@@ -26,9 +26,23 @@ public class Game
         frame.Rolls.Add(pins);
         _isFrameOngoing = CheckFrameIsOngoing(frame);
     }
+
     public int Score()
     {
-        throw new NotImplementedException();
+        if (Frames.Count == 0)
+            return 0;
+
+        var score = Frames.First().Rolls.Sum();
+        for (int i = 1; i < Frames.Count; i++)
+        {
+            if (Frames[i - 1].IsStrike())
+                score += 2 * Frames[i].Rolls.Sum();
+            else if (Frames[i - 1].IsSpare())
+                score += Frames[i].Rolls.Sum() + Frames[i].Rolls.First();
+            else
+                score += Frames[i].Rolls.Sum();
+        }
+        return score;
     }
 
     private bool AreThereTooManyPinsDown(int pins, Frame frame)
